@@ -5,7 +5,7 @@ using data;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace stockService
+namespace service
 {
     /// <summary>
     /// Stock Service

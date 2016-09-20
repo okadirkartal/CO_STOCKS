@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿ 
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -17,15 +18,25 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Stocks", "Index", "Stock", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+                    <li>@Html.ActionLink("Home", "Index", "Stock")</li> 
+                    @if (Session[fields.CommonKeys.userGUID] != null)
+                    {
+
+                        <li>@Html.ActionLink("Stock List", "AddStock", "Stock")</li>
+                        <li>@Html.ActionLink("Stock List", "StockList", "Stock")</li>
+                        <li>@Html.ActionLink("Logout", "Logout", "Stock")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Register", "Register", "Stock")</li>
+                        <li>@Html.ActionLink("Login", "Login", "Stock")</li>
+                    }
+                             </ul>
+              
             </div>
         </div>
     </div>

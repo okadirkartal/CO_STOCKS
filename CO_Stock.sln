@@ -4,14 +4,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "web", "web\web.csproj", "{0602CD00-C65C-48EB-A0B7-4BC368198514}"
+	ProjectSection(ProjectDependencies) = postProject
+		{47D88C3A-486A-4159-B864-B0F420B5E89A} = {47D88C3A-486A-4159-B864-B0F420B5E89A}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "web.Tests", "web.Tests\web.Tests.csproj", "{EA11782F-9F3A-46BA-9754-6E8BF6EF1EBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CO_STOCK_SERVICE", "CO_STOCK_SERVICE\CO_STOCK_SERVICE.csproj", "{10B1576C-3111-43B1-92EC-B9018C4E84B7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stockService", "CO_STOCK_SERVICE\stockService.csproj", "{10B1576C-3111-43B1-92EC-B9018C4E84B7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "model", "model\model.csproj", "{7B056E82-E961-4B6C-B066-52E86DFFC961}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "data", "data\data.csproj", "{E844EA73-3D58-4E77-A5E5-3A86FDF6E71C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fields", "fields\fields.csproj", "{9C424A34-2F38-4EBE-B976-ABC4E775DF99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "service", "service\service.csproj", "{47D88C3A-486A-4159-B864-B0F420B5E89A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "business", "business\business.csproj", "{EAB2C2FE-BAC5-4E2D-B095-334B23E5A169}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +48,18 @@ Global
 		{E844EA73-3D58-4E77-A5E5-3A86FDF6E71C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E844EA73-3D58-4E77-A5E5-3A86FDF6E71C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E844EA73-3D58-4E77-A5E5-3A86FDF6E71C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C424A34-2F38-4EBE-B976-ABC4E775DF99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C424A34-2F38-4EBE-B976-ABC4E775DF99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C424A34-2F38-4EBE-B976-ABC4E775DF99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C424A34-2F38-4EBE-B976-ABC4E775DF99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47D88C3A-486A-4159-B864-B0F420B5E89A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47D88C3A-486A-4159-B864-B0F420B5E89A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47D88C3A-486A-4159-B864-B0F420B5E89A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47D88C3A-486A-4159-B864-B0F420B5E89A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAB2C2FE-BAC5-4E2D-B095-334B23E5A169}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAB2C2FE-BAC5-4E2D-B095-334B23E5A169}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAB2C2FE-BAC5-4E2D-B095-334B23E5A169}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAB2C2FE-BAC5-4E2D-B095-334B23E5A169}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

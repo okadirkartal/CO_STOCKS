@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetStocks">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userGuid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStocksResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStocksResult" type="tns:ArrayOfS_stocks" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfS_stocks">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="s_stocks" nillable="true" type="tns:s_stocks" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="s_stocks">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="stock_code" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="stock_price" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="is_active" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="user_id" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetStocksSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStocks" />
+  </wsdl:message>
+  <wsdl:message name="GetStocksSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStocksResponse" />
+  </wsdl:message>
+  <wsdl:portType name="StockExchangeSoap">
+    <wsdl:operation name="GetStocks">
+      <wsdl:input message="tns:GetStocksSoapIn" />
+      <wsdl:output message="tns:GetStocksSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="StockExchangeSoap" type="tns:StockExchangeSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetStocks">
+      <soap:operation soapAction="http://tempuri.org/GetStocks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="StockExchangeSoap12" type="tns:StockExchangeSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetStocks">
+      <soap12:operation soapAction="http://tempuri.org/GetStocks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="StockExchange">
+    <wsdl:port name="StockExchangeSoap" binding="tns:StockExchangeSoap">
+      <soap:address location="http://localhost:50496/StockExchange.asmx" />
+    </wsdl:port>
+    <wsdl:port name="StockExchangeSoap12" binding="tns:StockExchangeSoap12">
+      <soap12:address location="http://localhost:50496/StockExchange.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

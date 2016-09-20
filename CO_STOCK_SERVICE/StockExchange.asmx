@@ -1,1 +1,1 @@
-﻿<%@ WebService Language="C#" CodeBehind="HoldingOrdino.asmx.cs" Class="AdServer.Web.Services.HoldingOrdino" %>
+﻿<%@ WebService Language="C#" CodeBehind="StockExchange.asmx.cs" Class="stockService.StockExchange" %>
