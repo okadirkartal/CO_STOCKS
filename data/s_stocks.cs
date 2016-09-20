@@ -15,9 +15,11 @@ namespace data
     public partial class s_stocks
     {
         public int Id { get; set; }
-        public string stock_code { get; set; }
-        public Nullable<int> stock_price { get; set; }
-        public string is_active { get; set; }
+        public string code { get; set; }
+        public string name { get; set; }
+        public Nullable<int> quantity { get; set; }
+        public Nullable<int> price { get; set; }
         public Nullable<int> user_id { get; set; }
+        public Nullable<bool> is_active { get; set; }
     }
 }

@@ -12,11 +12,17 @@ namespace web.Controllers
         {
             return View();
         }
+
+        public ActionResult Login(loginRegisterViewModel model)
+        {
+            return View(model);
+
+        }
          
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(loginViewModel model)
+        public ActionResult _LoginPartial(loginViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -25,7 +31,7 @@ namespace web.Controllers
                 if (result.IsSuccess)
                 {
                     Session[fields.CommonKeys.userGUID] = result.ReturnMessage;
-                    return Redirect("/Home/Index");
+                    return Redirect("/Stock/Index");
                 }
                 ViewBag.Message = result.ReturnMessage;
             }
@@ -35,9 +41,20 @@ namespace web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Register()
+        public ActionResult _RegisterPartial(registerViewModel model)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                var ub = new userBusiness();
+                var result = ub.Register(model);
+                if (result.IsSuccess)
+                {
+                    Session[fields.CommonKeys.userGUID] = result.ReturnMessage;
+                    return Redirect("/Stock/Index");
+                }
+                ViewBag.Message = result.ReturnMessage;
+            }
+            return View(model);
         }
 
 
@@ -53,6 +70,27 @@ namespace web.Controllers
             return View();
         }
 
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult _AddStockPartial(stockViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                //var ub = new userBusiness();
+                //var result = ub.Register(model);
+                //if (result.IsSuccess)
+                //{
+                //    Session[fields.CommonKeys.userGUID] = result.ReturnMessage;
+                //    return Redirect("/Stock/Index");
+                //}
+                //ViewBag.Message = result.ReturnMessage;
+                return null;
+            }
+            return View(model);
+        }
+
         [SessionExpire]
         public ActionResult StockList()
         {
@@ -64,7 +102,7 @@ namespace web.Controllers
         {
             Session.Remove(fields.CommonKeys.userGUID);
             Session.Abandon();
-            return Redirect("/Home");
+            return Redirect("/Stock/Index");
         }
     }
 }

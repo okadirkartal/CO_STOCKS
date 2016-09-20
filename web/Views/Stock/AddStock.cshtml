@@ -1,8 +1,8 @@
-﻿
+﻿@using model.viewModel
+@model stockViewModel
 @{
-    ViewBag.Title = "AddStock";
+    ViewBag.Title = "Add Stock";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>AddStock</h2>
-
+@Html.Partial("_AddStockPartial",Model)

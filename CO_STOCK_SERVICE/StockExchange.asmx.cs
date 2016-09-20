@@ -37,7 +37,7 @@ namespace stockService
                 return stocks;
             Random rnd = new Random();
             for (int i = 0; i < stocks.Count; i++)
-                stocks[i].stock_price = rnd.Next(1, 1000);
+                stocks[i].price = rnd.Next(1, 1000);
             return stocks;
         }
     }

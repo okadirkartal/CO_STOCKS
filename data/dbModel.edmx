@@ -19,10 +19,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="stock_code" Type="varchar" MaxLength="50" />
-          <Property Name="stock_price" Type="int" />
+          <Property Name="code" Type="varchar" MaxLength="50" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="price" Type="int" />
           <Property Name="user_id" Type="int" />
-          <Property Name="is_active" Type="nchar" MaxLength="10" />
+          <Property Name="is_active" Type="bit" />
         </EntityType>
         <EntityType Name="s_users">
           <Key>
@@ -33,7 +35,7 @@
           <Property Name="username" Type="varchar" MaxLength="20" />
           <Property Name="name" Type="varchar" MaxLength="50" />
           <Property Name="surname" Type="varchar" MaxLength="50" />
-          <Property Name="password" Type="varchar" MaxLength="20" />
+          <Property Name="password" Type="varchar" MaxLength="15" />
           <Property Name="creation_date" Type="datetime" />
           <Property Name="last_logindate" Type="datetime" />
         </EntityType>
@@ -55,16 +57,6 @@
           <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="TLExchangeValue" Type="Decimal" Precision="9" Scale="4" />
         </EntityType>
-        <EntityType Name="s_stocks">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="stock_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="stock_price" Type="Int32" />
-          <Property Name="is_active" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="user_id" Type="Int32" />
-        </EntityType>
         <EntityType Name="s_users">
           <Key>
             <PropertyRef Name="id" />
@@ -73,16 +65,28 @@
           <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="creation_date" Type="DateTime" Precision="3" />
           <Property Name="last_logindate" Type="DateTime" Precision="3" />
           <Property Name="user_guid" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="co_stocksEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="s_currencies" EntityType="Self.s_currencies" />
-          <EntitySet Name="s_stocks" EntityType="Self.s_stocks" />
           <EntitySet Name="s_users" EntityType="Self.s_users" />
+          <EntitySet Name="s_stocks" EntityType="co_stocksModel.s_stocks" />
         </EntityContainer>
+        <EntityType Name="s_stocks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="price" Type="Int32" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="is_active" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -99,17 +103,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="s_stocks">
-            <EntityTypeMapping TypeName="co_stocksModel.s_stocks">
-              <MappingFragment StoreEntitySet="s_stocks">
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="stock_code" ColumnName="stock_code" />
-                <ScalarProperty Name="stock_price" ColumnName="stock_price" />
-                <ScalarProperty Name="is_active" ColumnName="is_active" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="s_users">
             <EntityTypeMapping TypeName="co_stocksModel.s_users">
               <MappingFragment StoreEntitySet="s_users">
@@ -121,6 +114,19 @@
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="creation_date" ColumnName="creation_date" />
                 <ScalarProperty Name="last_logindate" ColumnName="last_logindate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="s_stocks">
+            <EntityTypeMapping TypeName="co_stocksModel.s_stocks">
+              <MappingFragment StoreEntitySet="s_stocks">
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

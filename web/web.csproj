@@ -245,10 +245,12 @@
     <Content Include="Service References\stockService\web.stockService.GetStocksResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Views\Stock\AddStock.cshtml" />
+    <Content Include="Views\Stock\_AddStockPartial.cshtml" />
     <Content Include="Views\Stock\StockList.cshtml" />
-    <Content Include="Views\Stock\Register.cshtml" />
     <Content Include="Views\Stock\Login.cshtml" />
+    <Content Include="Views\Stock\_LoginPartial.cshtml" />
+    <Content Include="Views\Stock\_RegisterPartial.cshtml" />
+    <Content Include="Views\Stock\AddStock.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\" />

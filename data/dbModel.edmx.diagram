@@ -6,8 +6,8 @@
     <edmx:Diagrams>
       <Diagram DiagramId="6058d1a463bc45bbb6722f108f1f482a" Name="Diagram1">
         <EntityTypeShape EntityType="co_stocksModel.s_currencies" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="co_stocksModel.s_stocks" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="co_stocksModel.s_users" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="co_stocksModel.s_stocks" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
