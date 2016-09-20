@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="co_stocksModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="s_currencies">
+          <Key>
+            <PropertyRef Name="currency_id" />
+          </Key>
+          <Property Name="currency_id" Type="tinyint" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="255" />
+          <Property Name="TLExchangeValue" Type="decimal" Precision="9" Scale="4" />
+        </EntityType>
+        <EntityType Name="s_stocks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="stock_code" Type="varchar" MaxLength="50" />
+          <Property Name="stock_price" Type="int" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="is_active" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="s_users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_guid" Type="varchar" MaxLength="32" />
+          <Property Name="username" Type="varchar" MaxLength="20" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="surname" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="20" />
+          <Property Name="creation_date" Type="datetime" />
+          <Property Name="last_logindate" Type="datetime" />
+        </EntityType>
+        <EntityContainer Name="co_stocksModelStoreContainer">
+          <EntitySet Name="s_currencies" EntityType="Self.s_currencies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="s_stocks" EntityType="Self.s_stocks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="s_users" EntityType="Self.s_users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="co_stocksModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="s_currencies">
+          <Key>
+            <PropertyRef Name="currency_id" />
+          </Key>
+          <Property Name="currency_id" Type="Byte" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TLExchangeValue" Type="Decimal" Precision="9" Scale="4" />
+        </EntityType>
+        <EntityType Name="s_stocks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="stock_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="stock_price" Type="Int32" />
+          <Property Name="is_active" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="user_id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="s_users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
+          <Property Name="last_logindate" Type="DateTime" Precision="3" />
+          <Property Name="user_guid" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="co_stocksEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="s_currencies" EntityType="Self.s_currencies" />
+          <EntitySet Name="s_stocks" EntityType="Self.s_stocks" />
+          <EntitySet Name="s_users" EntityType="Self.s_users" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="co_stocksModelStoreContainer" CdmEntityContainer="co_stocksEntities">
+          <EntitySetMapping Name="s_currencies">
+            <EntityTypeMapping TypeName="co_stocksModel.s_currencies">
+              <MappingFragment StoreEntitySet="s_currencies">
+                <ScalarProperty Name="currency_id" ColumnName="currency_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="TLExchangeValue" ColumnName="TLExchangeValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="s_stocks">
+            <EntityTypeMapping TypeName="co_stocksModel.s_stocks">
+              <MappingFragment StoreEntitySet="s_stocks">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="stock_code" ColumnName="stock_code" />
+                <ScalarProperty Name="stock_price" ColumnName="stock_price" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="s_users">
+            <EntityTypeMapping TypeName="co_stocksModel.s_users">
+              <MappingFragment StoreEntitySet="s_users">
+                <ScalarProperty Name="user_guid" ColumnName="user_guid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="last_logindate" ColumnName="last_logindate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
