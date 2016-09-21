@@ -15,14 +15,14 @@ namespace web.stockService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ArrayOfS_stocks", Namespace="http://tempuri.org/", ItemName="s_stocks")]
+    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="ArrayOfS_stocks", Namespace="http://localhost:50496/StockExchange.asmx", ItemName="s_stocks")]
     [System.SerializableAttribute()]
     public class ArrayOfS_stocks : System.Collections.Generic.List<web.stockService.s_stocks> {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="s_stocks", Namespace="http://tempuri.org/")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="s_stocks", Namespace="http://localhost:50496/StockExchange.asmx")]
     [System.SerializableAttribute()]
     public partial class s_stocks : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -32,14 +32,19 @@ namespace web.stockService {
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string stock_codeField;
-        
-        private System.Nullable<int> stock_priceField;
+        private string codeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string is_activeField;
+        private string nameField;
         
-        private System.Nullable<int> user_idField;
+        private System.Nullable<int> quantityField;
+        
+        private System.Nullable<int> priceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string user_guidField;
+        
+        private bool is_activeField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -65,53 +70,79 @@ namespace web.stockService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
-        public string stock_code {
+        public string code {
             get {
-                return this.stock_codeField;
+                return this.codeField;
             }
             set {
-                if ((object.ReferenceEquals(this.stock_codeField, value) != true)) {
-                    this.stock_codeField = value;
-                    this.RaisePropertyChanged("stock_code");
+                if ((object.ReferenceEquals(this.codeField, value) != true)) {
+                    this.codeField = value;
+                    this.RaisePropertyChanged("code");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        public string name {
+            get {
+                return this.nameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.nameField, value) != true)) {
+                    this.nameField = value;
+                    this.RaisePropertyChanged("name");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public System.Nullable<int> stock_price {
+        public System.Nullable<int> quantity {
             get {
-                return this.stock_priceField;
+                return this.quantityField;
             }
             set {
-                if ((this.stock_priceField.Equals(value) != true)) {
-                    this.stock_priceField = value;
-                    this.RaisePropertyChanged("stock_price");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
-        public string is_active {
-            get {
-                return this.is_activeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.is_activeField, value) != true)) {
-                    this.is_activeField = value;
-                    this.RaisePropertyChanged("is_active");
+                if ((this.quantityField.Equals(value) != true)) {
+                    this.quantityField = value;
+                    this.RaisePropertyChanged("quantity");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
-        public System.Nullable<int> user_id {
+        public System.Nullable<int> price {
             get {
-                return this.user_idField;
+                return this.priceField;
             }
             set {
-                if ((this.user_idField.Equals(value) != true)) {
-                    this.user_idField = value;
-                    this.RaisePropertyChanged("user_id");
+                if ((this.priceField.Equals(value) != true)) {
+                    this.priceField = value;
+                    this.RaisePropertyChanged("price");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
+        public string user_guid {
+            get {
+                return this.user_guidField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.user_guidField, value) != true)) {
+                    this.user_guidField = value;
+                    this.RaisePropertyChanged("user_guid");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=6)]
+        public bool is_active {
+            get {
+                return this.is_activeField;
+            }
+            set {
+                if ((this.is_activeField.Equals(value) != true)) {
+                    this.is_activeField = value;
+                    this.RaisePropertyChanged("is_active");
                 }
             }
         }
@@ -127,14 +158,14 @@ namespace web.stockService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="stockService.StockExchangeSoap")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://localhost:50496/StockExchange.asmx", ConfigurationName="stockService.StockExchangeSoap")]
     public interface StockExchangeSoap {
         
-        // CODEGEN: Generating message contract since element name userGuid from namespace http://tempuri.org/ is not marked nillable
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetStocks", ReplyAction="*")]
+        // CODEGEN: Generating message contract since element name userGuid from namespace http://localhost:50496/StockExchange.asmx is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://localhost:50496/StockExchange.asmx/GetStocks", ReplyAction="*")]
         web.stockService.GetStocksResponse GetStocks(web.stockService.GetStocksRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetStocks", ReplyAction="*")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://localhost:50496/StockExchange.asmx/GetStocks", ReplyAction="*")]
         System.Threading.Tasks.Task<web.stockService.GetStocksResponse> GetStocksAsync(web.stockService.GetStocksRequest request);
     }
     
@@ -144,7 +175,7 @@ namespace web.stockService {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class GetStocksRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetStocks", Namespace="http://tempuri.org/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetStocks", Namespace="http://localhost:50496/StockExchange.asmx", Order=0)]
         public web.stockService.GetStocksRequestBody Body;
         
         public GetStocksRequest() {
@@ -158,7 +189,7 @@ namespace web.stockService {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://localhost:50496/StockExchange.asmx")]
     public partial class GetStocksRequestBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
@@ -178,7 +209,7 @@ namespace web.stockService {
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class GetStocksResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetStocksResponse", Namespace="http://tempuri.org/", Order=0)]
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetStocksResponse", Namespace="http://localhost:50496/StockExchange.asmx", Order=0)]
         public web.stockService.GetStocksResponseBody Body;
         
         public GetStocksResponse() {
@@ -192,7 +223,7 @@ namespace web.stockService {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://localhost:50496/StockExchange.asmx")]
     public partial class GetStocksResponseBody {
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]

@@ -10,8 +10,7 @@
 namespace data
 {
     using System;
-    using System.Collections.Generic;
-    
+
     public partial class s_stocks
     {
         public int Id { get; set; }
@@ -19,7 +18,7 @@ namespace data
         public string name { get; set; }
         public Nullable<int> quantity { get; set; }
         public Nullable<int> price { get; set; }
-        public Nullable<int> user_id { get; set; }
-        public Nullable<bool> is_active { get; set; }
+        public string user_guid { get; set; }
+        public bool is_active { get; set; }
     }
 }

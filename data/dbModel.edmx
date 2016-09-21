@@ -18,13 +18,13 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="code" Type="varchar" MaxLength="50" />
-          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="code" Type="varchar" MaxLength="15" />
+          <Property Name="name" Type="varchar" MaxLength="25" />
           <Property Name="quantity" Type="int" />
           <Property Name="price" Type="int" />
-          <Property Name="user_id" Type="int" />
-          <Property Name="is_active" Type="bit" />
+          <Property Name="user_guid" Type="varchar" MaxLength="32" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="s_users">
           <Key>
@@ -80,12 +80,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="code" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="quantity" Type="Int32" />
           <Property Name="price" Type="Int32" />
-          <Property Name="user_id" Type="Int32" />
-          <Property Name="is_active" Type="Boolean" />
+          <Property Name="user_guid" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -121,7 +121,7 @@
             <EntityTypeMapping TypeName="co_stocksModel.s_stocks">
               <MappingFragment StoreEntitySet="s_stocks">
                 <ScalarProperty Name="is_active" ColumnName="is_active" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_guid" ColumnName="user_guid" />
                 <ScalarProperty Name="price" ColumnName="price" />
                 <ScalarProperty Name="quantity" ColumnName="quantity" />
                 <ScalarProperty Name="name" ColumnName="name" />

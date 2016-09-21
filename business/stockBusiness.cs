@@ -25,12 +25,10 @@ namespace business
                 ctx.s_stocks.Add(new data.s_stocks() {
                     code=model.code,name=model.name,
                     quantity=model.quantity,is_active=true,
-                    user_id=model.user_id
+                    user_guid = model.user_guid
                 });
                 ctx.SaveChanges();  
                 result.ReturnMessage = "Stock added";
-
-
             }
             catch (Exception ex)
             {

@@ -15,7 +15,7 @@ namespace stockService
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
     // [System.Web.Script.Services.ScriptService]
-    public class StockExchange : System.Web.Services.WebService
+    public class StockExchange :WebService
     {
         /// <summary>
         /// This service returns all stocks by given user_guid
@@ -27,17 +27,15 @@ namespace stockService
         {
             List<s_stocks> stocks = new List<s_stocks>();
             #region Check User
-            var context = new co_stocksEntities();
-            var user = context.s_users.Where(x => x.user_guid == userGuid).FirstOrDefault();
-            if (user == null)
-                throw new Exception("Invalid User");
+            var context = new co_stocksEntities(); 
             #endregion
-            stocks = context.s_stocks.Where(x => x.user_id == user.id).ToList();
-            if (stocks == null || stocks.Count == 0)
-                return stocks;
-            Random rnd = new Random();
-            for (int i = 0; i < stocks.Count; i++)
-                stocks[i].price = rnd.Next(1, 1000);
+            stocks = context.s_stocks.Where(x => x.user_guid == userGuid).ToList();
+            if (stocks != null && stocks.Count == 0)
+            {
+                Random rnd = new Random();
+                for (int i = 0; i < stocks.Count; i++)
+                    stocks[i].price = rnd.Next(1, 1000);
+            }
             return stocks;
         }
     }

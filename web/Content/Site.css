@@ -31,3 +31,55 @@ textarea {
 .col-md-2 control-label {
 
 }
+
+
+
+.xtable {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+}
+xtable {
+    border-collapse: collapse;
+    background-color: transparent;
+}
+*, ::after, ::before {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+}
+user agent stylesheet
+xtable {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: grey;
+}
+
+
+.xtable td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #eceeef;
+}
+th {
+    text-align: left;
+}
+*, ::after, ::before {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+}
+user agent stylesheet
+th {
+    font-weight: bold;
+    text-align: -internal-center;
+}
+user agent stylesheet
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+Inherited from table.table.table-striped
+xtable {
+    border-collapse: collapse;
+    background-color: transparent;
+}

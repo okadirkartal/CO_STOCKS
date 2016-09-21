@@ -10,15 +10,16 @@ namespace web.Attributes
         {
             if (HttpContext.Current.Session[fields.CommonKeys.userGUID] == null)
             {
-                new RedirectToRouteResult(new RouteValueDictionary
+            filterContext.Result = new RedirectResult("/Stock/Login?returnUrl=" + filterContext.HttpContext.Request.RawUrl);
+                /*RedirectToRouteResult(new RouteValueDictionary
             {
              { "action", "Login" },
-            { "controller", "Member" },
+            { "controller", "Stock" },
             { "returnUrl", filterContext.HttpContext.Request.RawUrl}
              });
 
                 return;
-            }
+           */ }
 
         }
 

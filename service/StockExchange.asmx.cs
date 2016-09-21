@@ -10,7 +10,7 @@ namespace service
     /// <summary>
     /// Stock Service
     /// </summary>
-    [WebService(Namespace = "http://tempuri.org/")]
+    [WebService(Namespace = "http://localhost:50496/StockExchange.asmx")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
@@ -26,13 +26,10 @@ namespace service
         public List<s_stocks> GetStocks(string userGuid)
         {
             List<s_stocks> stocks = new List<s_stocks>();
-            #region Check User
+      
             var context = new co_stocksEntities();
-            var user = context.s_users.Where(x => x.user_guid == userGuid).FirstOrDefault();
-            if (user == null)
-                throw new Exception("Invalid User");
-            #endregion
-            stocks = context.s_stocks.Where(x => x.user_id == user.id).ToList();
+      
+            stocks = context.s_stocks.Where(x => x.user_guid == userGuid).ToList();
             if (stocks == null || stocks.Count == 0)
                 return stocks;
             Random rnd = new Random();

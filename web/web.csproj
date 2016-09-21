@@ -251,6 +251,7 @@
     <Content Include="Views\Stock\_LoginPartial.cshtml" />
     <Content Include="Views\Stock\_RegisterPartial.cshtml" />
     <Content Include="Views\Stock\AddStock.cshtml" />
+    <Content Include="Views\Stock\AddStockResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\" />

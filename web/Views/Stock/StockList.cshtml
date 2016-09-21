@@ -1,8 +1,62 @@
-﻿
+﻿@using model.viewModel
+@model List<stockViewModel>
 @{
     ViewBag.Title = "StockList";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>StockList</h2>
+<p>
+
+    @Html.ActionLink("[ Add New Stock ]", "AddStock")
+
+</p>
+<table class="xtable">
+    <thead class="thead-inverse">
+        <tr>
+
+            
+         
+
+            <th>Code</th>
+
+            <th>Name </th>
+
+            <th>Quantity </th>
+            <th>Price </th>
+            <th>Detail </th>
+            <th>Delete </th>
+        </tr>
+</thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+
+
+            <tr style="height:30px;">
+
+                <th scope="row">@item.code  </th>
+
+                <td>@item.name  </td>
+
+                <td>@item.quantity </td>
+
+                <td>@item.price </td>
+
+                <td> @Html.ActionLink("Details", "StockDetail", new { id = item.Id })   </td>
+                <td>@Html.ActionLink("Delete", "DeleteStock", new { id = item.Id })</td>
+            </tr>
+
+
+
+        }
+</tbody>
+</table>
+
+<p>
+
+    @Html.ActionLink("[ Add New Stock ]", "AddStock") 
+
+</p>
 
