@@ -1,6 +1,7 @@
 ﻿using model;
 using model.viewModel;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace business
@@ -23,12 +24,14 @@ namespace business
                     result.IsSuccess = false;
                     return result;
                 }
+             
                 var user = users.FirstOrDefault();
                 user.last_logindate = DateTime.Now;
                 ctx.SaveChanges();
-                result.ReturnCode = user.id;
-                result.ReturnMessage = user.user_guid;
-
+                result.ReturnMessageList = new  List<string>();
+                result.ReturnMessageList.Add(user.user_guid);
+                result.ReturnMessageList.Add(user.username);
+                 
 
             }
             catch (Exception ex)
@@ -69,7 +72,8 @@ namespace business
                         creation_date = DateTime.Now
                     });
                     ctx.SaveChanges();
-                    result.ReturnMessage = guid;
+                    result.ReturnMessageList.Add(guid);
+                    result.ReturnMessageList.Add(model.username); 
 
                 }
                 else

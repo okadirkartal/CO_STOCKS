@@ -40,6 +40,8 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Extensions" />
@@ -92,6 +94,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\fields\fields.csproj">
+      <Project>{9c424a34-2f38-4ebe-b976-abc4e775df99}</Project>
+      <Name>fields</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\model\model.csproj">
+      <Project>{7b056e82-e961-4b6c-b066-52e86dffc961}</Project>
+      <Name>model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\web\web.csproj">
       <Project>{0602CD00-C65C-48EB-A0B7-4BC368198514}</Project>
       <Name>web</Name>

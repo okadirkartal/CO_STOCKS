@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using fields;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -8,7 +9,7 @@ namespace web.Attributes
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (HttpContext.Current.Session[fields.CommonKeys.userGUID] == null)
+            if (Current.User  == null)
             {
             filterContext.Result = new RedirectResult("/Stock/Login?returnUrl=" + filterContext.HttpContext.Request.RawUrl);
                 /*RedirectToRouteResult(new RouteValueDictionary

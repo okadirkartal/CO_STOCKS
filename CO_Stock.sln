@@ -9,6 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "web", "web\web.csproj", "{0
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "web.Tests", "web.Tests\web.Tests.csproj", "{EA11782F-9F3A-46BA-9754-6E8BF6EF1EBE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{47D88C3A-486A-4159-B864-B0F420B5E89A} = {47D88C3A-486A-4159-B864-B0F420B5E89A}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stockService", "CO_STOCK_SERVICE\stockService.csproj", "{10B1576C-3111-43B1-92EC-B9018C4E84B7}"
 EndProject

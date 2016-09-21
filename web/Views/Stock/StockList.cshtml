@@ -24,7 +24,6 @@
 
             <th>Quantity </th>
             <th>Price </th>
-            <th>Detail </th>
             <th>Delete </th>
         </tr>
 </thead>
@@ -36,16 +35,15 @@
 
             <tr style="height:30px;">
 
-                <th scope="row">@item.code  </th>
+                <td scope="row">@item.code  </td>
 
                 <td>@item.name  </td>
 
                 <td>@item.quantity </td>
 
                 <td>@item.price </td>
-
-                <td> @Html.ActionLink("Details", "StockDetail", new { id = item.Id })   </td>
-                <td>@Html.ActionLink("Delete", "DeleteStock", new { id = item.Id })</td>
+                 
+                <td>@Html.ActionLink("Delete", "DeleteStock", new { stockCode = item.code })</td>
             </tr>
 
 

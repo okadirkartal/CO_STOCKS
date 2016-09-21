@@ -1,12 +1,13 @@
-﻿@{
+﻿@using fields
+@{
     ViewBag.Title = "Home";
 }
 
 <div class="jumbotron">
     <h1>STOCKS CENTER</h1>
-        @if (Session[fields.CommonKeys.userGUID] != null)
+        @if (Current.User != null)
         {
-            <p class="lead">Welcome,you can add new stock,see your stock list</p>
+            <p class="lead">Welcome @Current.User.userName,you can add new stock,see your stock list</p>
         }
         else
         {

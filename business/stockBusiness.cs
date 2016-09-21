@@ -38,17 +38,26 @@ namespace business
             return result;
         }
 
-        //public List<stockViewModel> StockList(int userId)
-        //{
-        //    try
-        //    {
-        //        var srv = new web.stockService();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    } 
-        //}
+        public bool DeleteStock(string stockCode)
+        {
+            try
+            {
+                var ctx = new data.co_stocksEntities();
+                var stock = ctx.s_stocks.Where(x => x.code == stockCode).FirstOrDefault();
+                if(stock!=null)
+                {
+                    ctx.s_stocks.Remove(stock);
+                    ctx.SaveChanges();
+                    return true;
+                }
+               
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return false;
+        }
 
     }
 }

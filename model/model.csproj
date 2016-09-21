@@ -48,6 +48,13 @@
     <Compile Include="viewModel\loginViewModel.cs" />
     <Compile Include="viewModel\registerViewModel.cs" />
     <Compile Include="viewModel\stockViewModel.cs" />
+    <Compile Include="viewModel\userSessionModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\data\data.csproj">
+      <Project>{e844ea73-3d58-4e77-a5e5-3a86fdf6e71c}</Project>
+      <Name>data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

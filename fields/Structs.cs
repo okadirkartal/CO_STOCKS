@@ -1,9 +1,8 @@
 ﻿namespace fields
 {
     public struct CommonKeys
-    {
-        public const string userGUID = "userGUID";
+    { 
 
-        public const string username = "username";
+        public const string APPLICATION_CURRENT_USER = "APPLICATION_CURRENT_USER";
     }
 }
