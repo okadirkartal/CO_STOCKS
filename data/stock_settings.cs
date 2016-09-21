@@ -12,14 +12,10 @@ namespace data
     using System;
     using System.Collections.Generic;
     
-    public partial class s_stocks
+    public partial class stock_settings
     {
         public int Id { get; set; }
-        public string code { get; set; }
-        public string name { get; set; }
-        public Nullable<int> quantity { get; set; }
-        public Nullable<int> price { get; set; }
         public string user_guid { get; set; }
-        public bool is_active { get; set; }
+        public int stock_ticker_min { get; set; }
     }
 }

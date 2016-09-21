@@ -39,10 +39,19 @@
           <Property Name="creation_date" Type="datetime" />
           <Property Name="last_logindate" Type="datetime" />
         </EntityType>
+        <EntityType Name="stock_settings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_guid" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="stock_ticker_min" Type="int" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="co_stocksModelStoreContainer">
           <EntitySet Name="s_currencies" EntityType="Self.s_currencies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="s_stocks" EntityType="Self.s_stocks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="s_users" EntityType="Self.s_users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="stock_settings" EntityType="Self.stock_settings" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -74,6 +83,7 @@
           <EntitySet Name="s_currencies" EntityType="Self.s_currencies" />
           <EntitySet Name="s_users" EntityType="Self.s_users" />
           <EntitySet Name="s_stocks" EntityType="co_stocksModel.s_stocks" />
+          <EntitySet Name="stock_settings" EntityType="co_stocksModel.stock_settings" />
         </EntityContainer>
         <EntityType Name="s_stocks">
           <Key>
@@ -86,6 +96,14 @@
           <Property Name="price" Type="Int32" />
           <Property Name="user_guid" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Name="is_active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="stock_settings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_guid" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="stock_ticker_min" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -126,6 +144,15 @@
                 <ScalarProperty Name="quantity" ColumnName="quantity" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stock_settings">
+            <EntityTypeMapping TypeName="co_stocksModel.stock_settings">
+              <MappingFragment StoreEntitySet="stock_settings">
+                <ScalarProperty Name="stock_ticker_min" ColumnName="stock_ticker_min" />
+                <ScalarProperty Name="user_guid" ColumnName="user_guid" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

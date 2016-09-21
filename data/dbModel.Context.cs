@@ -28,5 +28,6 @@ namespace data
         public DbSet<s_currencies> s_currencies { get; set; }
         public DbSet<s_users> s_users { get; set; }
         public DbSet<s_stocks> s_stocks { get; set; }
+        public DbSet<stock_settings> stock_settings { get; set; }
     }
 }

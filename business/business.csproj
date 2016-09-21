@@ -59,6 +59,10 @@
       <Project>{e844ea73-3d58-4e77-a5e5-3a86fdf6e71c}</Project>
       <Name>data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\fields\fields.csproj">
+      <Project>{9c424a34-2f38-4ebe-b976-abc4e775df99}</Project>
+      <Name>fields</Name>
+    </ProjectReference>
     <ProjectReference Include="..\model\model.csproj">
       <Project>{7b056e82-e961-4b6c-b066-52e86dffc961}</Project>
       <Name>model</Name>

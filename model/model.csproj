@@ -47,6 +47,7 @@
     <Compile Include="viewModel\loginRegisterViewModel.cs" />
     <Compile Include="viewModel\loginViewModel.cs" />
     <Compile Include="viewModel\registerViewModel.cs" />
+    <Compile Include="viewModel\stockSettingsViewModel.cs" />
     <Compile Include="viewModel\stockViewModel.cs" />
     <Compile Include="viewModel\userSessionModel.cs" />
   </ItemGroup>

@@ -1,56 +1,96 @@
 ﻿@using model.viewModel
-@model List<stockViewModel>
+@model stockSettingsViewModel
 @{
     ViewBag.Title = "StockList";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@using (Html.BeginForm("StockList", "Stock"))
+{
+    @Html.TextBoxFor(m => m.ticker_minute)
+}
+<script type="text/javascript">
+    var tickMin = parseInt(document.getElementById('ticker_minute').value)*1000;
+    function getStockList() {
+        $.ajax({
+            type: 'get',
+            dataType: 'json',
+            cache: false,
+            url: '/Stock/StockListJson',
+            beforeSend: function () {
+                $('#loadingImage').show();
+            },
+            complete: function () {
+                $('#loadingImage').hide();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+            },
+            success: function (result) {
+                $('#divMyList').html("");
+
+                var strResult = "";
+                var data = result;
+                strResult += "<table class='xtable'> <thead class='thead-inverse'><tr>";
+                strResult += "<th>Code</th> <th>Name </th><th>Quantity </th><th>Price </th><th>Delete </th></tr></thead>";
+                strResult += "<tbody>";
+                for (var i = 0; i < data.length; i++) {
+                    strResult += " <tr style='height:30px;'>";
+                    strResult += "<td scope='row'>" + data[i]["code"] + "</td>";
+                    strResult += "<td scope='row'>" + data[i]["name"] + "</td>";
+                    strResult += "<td scope='row'>" + data[i]["quantity"] + "</td>";
+                    strResult += "<td scope='row'>" + data[i]["price"] + "</td>";
+                    strResult += "<td scope='row'><a href=\"javascript:deleteStock(" + data[i]["Id"] + ");\">[ Delete ]</a></td>";
+                }
+                strResult += "</tbody>";
+                strResult += "</table>";
+                $('#divMyList').append(strResult);
+            }
+        });
+    }
+
+    function deleteStock(Id) {
+
+        $.ajax({
+            type: 'get',
+            dataType: 'json',
+            cache: false,
+            url: '/Stock/DeleteStock',
+            data: {
+                stockId: Id
+            },
+            beforeSend: function () {
+                $('#loadingImage').show();
+            },
+            complete: function () {
+                $('#loadingImage').hide();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log("Request: " + XMLHttpRequest.toString() + "\n\nStatus: " + textStatus + "\n\nError: " + errorThrown);
+            },
+            success: function (result) {
+                if(result.result==1)
+                    getStockList();
+            }
+        });
+    }
+    $(document).ready(function () {
+        alert(tickMin);
+       // setInterval(' getStockList();',tickMin);
+
+    });
+</script>
 <h2>StockList</h2>
 <p>
 
     @Html.ActionLink("[ Add New Stock ]", "AddStock")
 
 </p>
-<table class="xtable">
-    <thead class="thead-inverse">
-        <tr>
+<center><img src="/Content/loading.gif" id="loadingImage" /></center>
+<div style="overflow-x: hidden;  height:100%; " id="divMyList">
+</div>
 
-            
-         
-
-            <th>Code</th>
-
-            <th>Name </th>
-
-            <th>Quantity </th>
-            <th>Price </th>
-            <th>Delete </th>
-        </tr>
-</thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-
-
-
-            <tr style="height:30px;">
-
-                <td scope="row">@item.code  </td>
-
-                <td>@item.name  </td>
-
-                <td>@item.quantity </td>
-
-                <td>@item.price </td>
-                 
-                <td>@Html.ActionLink("Delete", "DeleteStock", new { stockCode = item.code })</td>
-            </tr>
-
-
-
-        }
-</tbody>
-</table>
+ 
 
 <p>
 

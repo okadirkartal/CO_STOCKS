@@ -1,4 +1,5 @@
-﻿using model;
+﻿using fields;
+using model;
 using model.viewModel;
 using System;
 using System.Linq;
@@ -38,12 +39,13 @@ namespace business
             return result;
         }
 
-        public bool DeleteStock(string stockCode)
+        public bool DeleteStock(int stockId,string userGUID)
         {
             try
             {
+                
                 var ctx = new data.co_stocksEntities();
-                var stock = ctx.s_stocks.Where(x => x.code == stockCode).FirstOrDefault();
+                var stock = ctx.s_stocks.Where(x => x.Id == stockId && x.user_guid==userGUID).FirstOrDefault();
                 if(stock!=null)
                 {
                     ctx.s_stocks.Remove(stock);
@@ -59,5 +61,44 @@ namespace business
             return false;
         }
 
+
+        public stockSettingsViewModel GetStockSettings(string userGUID)
+        {
+            try
+            {
+                var ctx = new data.co_stocksEntities();
+                var item = ctx.stock_settings.Where(x => x.user_guid == userGUID).FirstOrDefault();
+               int minute=  (item != null) ? item.stock_ticker_min : CommonKeys.DEFAULT_STOCK_TICKER_MINUTE;
+                return new stockSettingsViewModel() { ticker_minute = minute, user_guid = userGUID };
+
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool UpdateStockTickers(int tickerMinute,string userGUID)
+        {
+            try
+            {
+                var ctx = new data.co_stocksEntities();
+                var stock_ticker = ctx.stock_settings.Where(x => x.user_guid == userGUID).FirstOrDefault();
+                if (stock_ticker != null)
+                    stock_ticker.stock_ticker_min = tickerMinute;
+                else
+                {
+                    ctx.stock_settings.Add(new data.stock_settings() {
+                        stock_ticker_min=tickerMinute,user_guid=userGUID
+                    });
+                }
+                ctx.SaveChanges();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

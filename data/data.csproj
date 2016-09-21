@@ -67,6 +67,9 @@
       <DependentUpon>dbModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="stock_settings.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="s_currencies.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>

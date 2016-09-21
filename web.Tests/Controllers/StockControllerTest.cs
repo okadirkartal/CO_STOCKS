@@ -81,6 +81,15 @@ namespace web.Tests.Controllers
 
 
         [TestMethod]
+        public void StockListJson()
+        {
+            StockController controller = new StockController();
+            ViewResult result = controller.StockListJson() as ViewResult;
+            Assert.IsNotNull(result);
+        }
+
+
+        [TestMethod]
         public void DeleteStock()
         {
             StockController controller = new StockController();
@@ -95,6 +104,14 @@ namespace web.Tests.Controllers
         {
             StockController controller = new StockController();
             ActionResult result = controller.Logout() as  ActionResult;
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void Result()
+        {
+            StockController controller = new StockController();
+            ActionResult result = controller.Result() as ActionResult;
             Assert.IsNotNull(result);
         }
     }
