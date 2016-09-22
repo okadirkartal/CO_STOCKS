@@ -13,8 +13,8 @@ namespace business
         {
             var result = new Result() { IsSuccess = true };
             try
-            {
-                var ctx = new data.co_stocksEntities();
+            {   
+                 var ctx = new data.co_stocksEntities();
                 string userName = model.username;
                 string password = model.password;
                 var users = ctx.s_users.Where(x => x.username == userName && x.password == password).ToList();
