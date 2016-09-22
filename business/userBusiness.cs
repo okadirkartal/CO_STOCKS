@@ -72,6 +72,7 @@ namespace business
                         creation_date = DateTime.Now
                     });
                     ctx.SaveChanges();
+                    result.ReturnMessageList = new List<string>();
                     result.ReturnMessageList.Add(guid);
                     result.ReturnMessageList.Add(model.username); 
 
