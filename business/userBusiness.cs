@@ -31,8 +31,6 @@ namespace business
                 result.ReturnMessageList = new  List<string>();
                 result.ReturnMessageList.Add(user.user_guid);
                 result.ReturnMessageList.Add(user.username);
-                 
-
             }
             catch (Exception ex)
             {
