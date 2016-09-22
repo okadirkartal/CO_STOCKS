@@ -11,25 +11,30 @@ namespace business
 
         public Result AddStock(stockViewModel model)
         {
-            var result = new Result() { IsSuccess = true };
+            var result = new Result() { IsSuccess = false };
             try
             {
-                var ctx = new data.co_stocksEntities();
-                string code = model.code;
-                var stocks = ctx.s_stocks.Where(x => x.code ==code).ToList();
-                if (stocks.Any())
+                if (!string.IsNullOrEmpty(model.user_guid))
                 {
-                    result.ReturnMessage = "this code is exists";
-                    result.IsSuccess = false;
-                    return result;
+                    var ctx = new data.co_stocksEntities();
+                    string code = model.code;
+                    var stocks = ctx.s_stocks.Where(x => x.code == code).ToList();
+                    if (stocks.Any())
+                    {
+                        result.ReturnMessage = "this code is exists";
+                        return result;
+                    }
+                    ctx.s_stocks.Add(new data.s_stocks()
+                    {
+                        code = model.code,
+                        name = model.name,
+                        quantity = model.quantity,
+                        is_active = true,
+                        user_guid = model.user_guid
+                    });
+                    ctx.SaveChanges();
+                    result.ReturnMessage = "Stock added";
                 }
-                ctx.s_stocks.Add(new data.s_stocks() {
-                    code=model.code,name=model.name,
-                    quantity=model.quantity,is_active=true,
-                    user_guid = model.user_guid
-                });
-                ctx.SaveChanges();  
-                result.ReturnMessage = "Stock added";
             }
             catch (Exception ex)
             {
@@ -43,14 +48,16 @@ namespace business
         {
             try
             {
-                
-                var ctx = new data.co_stocksEntities();
-                var stock = ctx.s_stocks.Where(x => x.Id == stockId && x.user_guid==userGUID).FirstOrDefault();
-                if(stock!=null)
+                if (!string.IsNullOrEmpty(userGUID))
                 {
-                    ctx.s_stocks.Remove(stock);
-                    ctx.SaveChanges();
-                    return true;
+                    var ctx = new data.co_stocksEntities();
+                    var stock = ctx.s_stocks.Where(x => x.Id == stockId && x.user_guid == userGUID).FirstOrDefault();
+                    if (stock != null)
+                    {
+                        ctx.s_stocks.Remove(stock);
+                        ctx.SaveChanges();
+                        return true;
+                    }
                 }
                
             }
@@ -65,12 +72,14 @@ namespace business
         public stockSettingsViewModel GetStockSettings(string userGUID)
         {
             try
-            {
-                var ctx = new data.co_stocksEntities();
-                var item = ctx.stock_settings.Where(x => x.user_guid == userGUID).FirstOrDefault();
-               int minute=  (item != null) ? item.stock_ticker_min : CommonKeys.DEFAULT_STOCK_TICKER_MINUTE;
-                return new stockSettingsViewModel() { ticker_minute = minute, user_guid = userGUID };
-
+            {if (!string.IsNullOrEmpty(userGUID))
+                {
+                    var ctx = new data.co_stocksEntities();
+                    var item = ctx.stock_settings.Where(x => x.user_guid == userGUID).FirstOrDefault();
+                    int minute = (item != null) ? item.stock_ticker_min : CommonKeys.DEFAULT_STOCK_TICKER_MINUTE;
+                    return new stockSettingsViewModel() { ticker_minute = minute, user_guid = userGUID };
+                }
+                return new stockSettingsViewModel();
             }
             catch(Exception ex)
             {
@@ -82,18 +91,24 @@ namespace business
         {
             try
             {
-                var ctx = new data.co_stocksEntities();
-                var stock_ticker = ctx.stock_settings.Where(x => x.user_guid == userGUID).FirstOrDefault();
-                if (stock_ticker != null)
-                    stock_ticker.stock_ticker_min = tickerMinute;
-                else
+                if (!string.IsNullOrEmpty(userGUID))
                 {
-                    ctx.stock_settings.Add(new data.stock_settings() {
-                        stock_ticker_min=tickerMinute,user_guid=userGUID
-                    });
+                    var ctx = new data.co_stocksEntities();
+                    var stock_ticker = ctx.stock_settings.Where(x => x.user_guid == userGUID).FirstOrDefault();
+                    if (stock_ticker != null)
+                        stock_ticker.stock_ticker_min = tickerMinute;
+                    else
+                    {
+                        ctx.stock_settings.Add(new data.stock_settings()
+                        {
+                            stock_ticker_min = tickerMinute,
+                            user_guid = userGUID
+                        });
+                    }
+                    ctx.SaveChanges();
+                    return true;
                 }
-                ctx.SaveChanges();
-                return true;
+                return false;
             }
             catch(Exception ex)
             {
