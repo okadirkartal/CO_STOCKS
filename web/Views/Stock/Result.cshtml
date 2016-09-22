@@ -8,6 +8,12 @@
             <p class="alert alert-success">Stock ticker settings are saved</p>
                break;
            }
+       case MessageCodes.User_LoggedOut:
+           {
+            <p class="alert alert-success">You are logged out.You will be redirect to  home page in 3 second
+    <script>setInterval("location.href='/Stock/Index'", 3000);</script></p>
+               break;
+           }
        default: break;
    }
 </div>

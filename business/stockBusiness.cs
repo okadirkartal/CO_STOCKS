@@ -79,7 +79,7 @@ namespace business
                     int minute = (item != null) ? item.stock_ticker_min : CommonKeys.DEFAULT_STOCK_TICKER_MINUTE;
                     return new stockSettingsViewModel() { ticker_minute = minute, user_guid = userGUID };
                 }
-                return new stockSettingsViewModel();
+            return new stockSettingsViewModel() { ticker_minute=CommonKeys.DEFAULT_STOCK_TICKER_MINUTE };
             }
             catch(Exception ex)
             {

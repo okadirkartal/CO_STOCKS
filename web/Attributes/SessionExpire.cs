@@ -9,7 +9,7 @@ namespace web.Attributes
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (Current.User  == null)
+            if (HttpContext.Current.Session == null || HttpContext.Current.Session[CommonKeys.APPLICATION_CURRENT_USER] == null)
             {
             filterContext.Result = new RedirectResult("/Stock/Login?returnUrl=" + filterContext.HttpContext.Request.RawUrl);
                 /*RedirectToRouteResult(new RouteValueDictionary

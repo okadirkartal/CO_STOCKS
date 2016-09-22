@@ -18,7 +18,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-@if (Current.User != null)
+@if (!string.IsNullOrEmpty(Current.User.userGUID))
 {
    <b class="navbar-brand">Welcome @Current.User.userName</b>
 }
@@ -31,7 +31,7 @@ else
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Stock")</li> 
-                    @if (Current.User != null)
+                    @if (!string.IsNullOrEmpty(Current.User.userGUID))
                     {
 
                         <li>@Html.ActionLink("Add Stock", "AddStock", "Stock")</li>

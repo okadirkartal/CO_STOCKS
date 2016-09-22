@@ -196,11 +196,10 @@ namespace web.Controllers
                 Session.RemoveAll();
                 Session.Clear();
             }
-                return RedirectToAction("Login");
+            return Redirect(string.Format("/Stock/Result?code={0}", MessageCodes.User_LoggedOut));
         }
 
-
-        [SessionExpire]
+         
         public ActionResult Result()
         {
             return View();
