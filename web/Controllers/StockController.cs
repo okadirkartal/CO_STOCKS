@@ -188,10 +188,14 @@ namespace web.Controllers
         [SessionExpire]
         public ActionResult Logout()
         {
-            Session.Abandon();
-            Session.RemoveAll();
-            Session.Clear();
-            return RedirectToAction("Login");
+            if (Session != null)
+            {
+                Session.Abandon();
+                Session.RemoveAll();
+                Session.Clear();
+            }
+                return RedirectToAction("Login");
+          
         }
 
 
