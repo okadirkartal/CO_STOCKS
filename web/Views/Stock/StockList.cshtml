@@ -1,16 +1,13 @@
 ﻿@using model.viewModel
 @model stockSettingsViewModel
 @{
-    ViewBag.Title = "StockList";
+    ViewBag.Title = "Stock List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm("StockList", "Stock"))
-{
-    @Html.TextBoxFor(m => m.ticker_minute)
-}
+
 <script type="text/javascript">
-    var tickMin = parseInt(document.getElementById('ticker_minute').value)*1000;
+    
     function getStockList() {
         $.ajax({
             type: 'get',
@@ -49,6 +46,21 @@
         });
     }
 
+    function getStockTicker() {
+         
+        $.ajax({
+            type: 'get',
+            dataType: 'json',
+            cache: false,
+            url: '/Stock/StockSettingsJson',
+            success: function (result) {
+                setInterval(' getStockList();', parseInt(result['ticker_minute'])*1000);
+              //  console.log('getStockTicker ' + result['ticker_minute']);
+              //  $('#hdnTickerMinute').val(result['ticker_minute']);
+            }
+        });
+    }
+
     function deleteStock(Id) {
 
         $.ajax({
@@ -74,12 +86,14 @@
             }
         });
     }
+  
     $(document).ready(function () {
-        alert(tickMin);
-       // setInterval(' getStockList();',tickMin);
+        getStockTicker();
+       
 
     });
 </script>
+<input type="hidden" id="hdnTickerMinute" value="0" />
 <h2>StockList</h2>
 <p>
 

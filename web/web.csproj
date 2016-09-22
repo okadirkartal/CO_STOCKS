@@ -237,8 +237,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Stock\About.cshtml" />
-    <Content Include="Views\Stock\Contact.cshtml" />
     <Content Include="Views\Stock\Index.cshtml" />
     <None Include="Service References\stockService\StockExchange.wsdl" />
     <Content Include="Service References\stockService\web.stockService.ArrayOfS_stocks.datasource">
@@ -261,7 +259,6 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\business\business.csproj">

@@ -108,9 +108,7 @@ namespace web.Controllers
         public ActionResult StockList()
         {
 
-            var stockBusiness = new stockBusiness();
-            var model = stockBusiness.GetStockSettings(Current.User.userGUID);
-            return View(model);
+            return View();
         }
 
 
@@ -157,6 +155,14 @@ namespace web.Controllers
             var stockBusiness = new stockBusiness();
             var model = stockBusiness.GetStockSettings(Current.User.userGUID);
             return View(model);
+        }
+
+        [SessionExpire]
+        public ActionResult StockSettingsJson()
+        {
+            var stockBusiness = new stockBusiness();
+            var model = stockBusiness.GetStockSettings(Current.User.userGUID);
+            return Json(model,JsonRequestBehavior.AllowGet);
         }
 
         [SessionExpire] 

@@ -5,7 +5,7 @@
     ViewBag.Title = "Stock Form";
 }
 
-<h2>Register</h2>
+<h2>Stock Settings</h2>
 @using (Html.BeginForm("_StockSettingsPartial", "Stock", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
@@ -15,7 +15,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.ticker_minute, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.ticker_minute, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.ticker_minute, new { @class = "form-control", type = "number" })
             @Html.ValidationMessageFor(m => m.ticker_minute, "", new { @class = "text-danger" })
         </div>
     </div>

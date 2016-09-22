@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace model.viewModel
 {
-   public class registerViewModel
+    public class registerViewModel
     {
         [Required]
         [StringLength(20, ErrorMessage = "Username can be maximum 20 length")]

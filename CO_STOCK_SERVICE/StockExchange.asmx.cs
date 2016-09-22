@@ -25,11 +25,21 @@ namespace stockService
         [WebMethod]
         public List<s_stocks> GetStocks(string userGuid)
         {
-            List<s_stocks> stocks = new List<s_stocks>();
-            #region Check User
-            var context = new co_stocksEntities(); 
+            var context = new co_stocksEntities();
+            #region User Authenticate by given user_guid
+            var user = context.s_users.Where(x => x.user_guid == userGuid).FirstOrDefault();
+            if (user == null)
+                throw new Exception("Invalid user!!!");
             #endregion
+
+
+
+            List<s_stocks> stocks = new List<s_stocks>();
+           
             stocks = context.s_stocks.Where(x => x.user_guid == userGuid).ToList();
+
+
+
             if (stocks != null && stocks.Count == 0)
             {
                 Random rnd = new Random();
