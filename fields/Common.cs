@@ -12,8 +12,16 @@ namespace fields
         {
             get
             {
+                try
+                {
 
-                return HttpContext.Current.Session[CommonKeys.APPLICATION_CURRENT_USER]!=null?(userSessionModel)HttpContext.Current.Session[CommonKeys.APPLICATION_CURRENT_USER]:null;
+                    return HttpContext.Current.Session != null && HttpContext.Current.Session[CommonKeys.APPLICATION_CURRENT_USER] != null ?
+                        (userSessionModel)HttpContext.Current.Session[CommonKeys.APPLICATION_CURRENT_USER] : new userSessionModel();
+                }
+                catch
+                {
+                    return new userSessionModel();
+                }
             }
             set
             {

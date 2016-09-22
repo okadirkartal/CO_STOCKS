@@ -115,24 +115,28 @@ namespace web.Controllers
         [SessionExpire]
         public ActionResult StockListJson()
         {
-            var srv = new stockService.StockExchangeSoapClient();
-            srv.Open();
-            var result = srv.GetStocks(Current.User.userGUID);
-            srv.Close();
-
             List<stockViewModel> stocks = new List<stockViewModel>();
-            if (result != null && result.Count > 0)
-            {
 
-                foreach (var item in result)
-                    stocks.Add(new stockViewModel()
-                    {
-                        Id=item.Id,
-                        code = item.code,
-                        name = item.name,
-                        price = item.price.Value,
-                        quantity = item.quantity.Value
-                    });
+            if (!string.IsNullOrEmpty(Current.User.userGUID))
+            {
+                var srv = new stockService.StockExchangeSoapClient();
+                srv.Open();
+                var result = srv.GetStocks(Current.User.userGUID);
+                srv.Close();
+
+                if (result != null && result.Count > 0)
+                {
+
+                    foreach (var item in result)
+                        stocks.Add(new stockViewModel()
+                        {
+                            Id = item.Id,
+                            code = item.code,
+                            name = item.name,
+                            price = item.price.Value,
+                            quantity = item.quantity.Value
+                        });
+                }
             }
             return Json(stocks, JsonRequestBehavior.AllowGet);
         }
@@ -169,8 +173,6 @@ namespace web.Controllers
         [HttpPost]
         public ActionResult _StockSettingsPartial(stockSettingsViewModel model)
         {
-           
-
             if (ModelState.IsValid)
             {
                 var stockBusiness = new stockBusiness();
@@ -188,10 +190,13 @@ namespace web.Controllers
         [SessionExpire]
         public ActionResult Logout()
         {
-            Session.Abandon();
-            Session.RemoveAll();
-            Session.Clear();
-            return RedirectToAction("Login");
+            if (Session != null)
+            {
+                Session.Abandon();
+                Session.RemoveAll();
+                Session.Clear();
+            }
+                return RedirectToAction("Login");
         }
 
 
