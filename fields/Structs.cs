@@ -13,5 +13,7 @@
         public const string Stock_Ticker_Settings_Are_Saved = "1";
 
         public const string User_LoggedOut = "2";
+
+        public const string Stock_Added = "3";
     }
 }

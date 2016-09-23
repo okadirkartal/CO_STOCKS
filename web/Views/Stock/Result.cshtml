@@ -13,6 +13,16 @@
             <p class="alert alert-success">You are logged out.You will be redirect to  home page in 3 second
     <script>setInterval("location.href='/Stock/Index'", 3000);</script></p>
                break;
+
+           }
+       case MessageCodes.Stock_Added:
+           {
+            <p class="alert alert-success">Stock is added </p>
+            <p>
+                <a href="/Stock/AddStock">[ Add new stock ]</a>
+                &nbsp;&nbsp;&nbsp;<a href="/Stock/StockList">[ Stock list ]</a>
+            </p>
+               break;
            }
        default: break;
    }

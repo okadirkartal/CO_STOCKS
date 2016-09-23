@@ -97,7 +97,7 @@ namespace web.Controllers
                 var result = sb.AddStock(model);
                 if (result.IsSuccess)
                 {
-                    return Redirect("/Stock/AddStockResult");
+                    return Redirect(string.Format("/Stock/Result?code={0}", MessageCodes.Stock_Added));
                 }
                 ViewBag.Message = result.ReturnMessage;
             }

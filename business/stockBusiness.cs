@@ -33,6 +33,7 @@ namespace business
                         user_guid = model.user_guid
                     });
                     ctx.SaveChanges();
+                    result.IsSuccess = true;
                     result.ReturnMessage = "Stock added";
                 }
             }
